@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* DESIGN.md tokens — Scoreboard (light) / Rink Night (dark). Components never use hex (AD-14). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --chrome: #16232e;
+  --chrome-soft: #e6ebef;
+  --action: #16232e;
+  --action-text: #ffffff;
+  --accent: #1b6fc4;
+  --background: #f2f4f5;
+  --surface: #ffffff;
+  --sunken: #e9ecef;
+  --fg: #111a21;
+  --muted: #5d6c78;
+  --border: #d9dee3;
+  --paid: #1e7a54;
+  --paid-soft: #e1f1ea;
+  --owing: #9c5a10;
+  --owing-soft: #f8eedd;
+  --danger: #b3261e;
+  color-scheme: light;
+}
+
+.dark {
+  --chrome: #131a22;
+  --chrome-soft: #1b2530;
+  --action: #1f6feb;
+  --action-text: #ffffff;
+  --accent: #58a6ff;
+  --background: #0d1117;
+  --surface: #161c24;
+  --sunken: #1c242e;
+  --fg: #e9edf3;
+  --muted: #94a3b4;
+  --border: #29323d;
+  --paid: #3fb98b;
+  --paid-soft: #12291f;
+  --owing: #e8a33d;
+  --owing-soft: #2e2210;
+  --danger: #f1707b;
+  color-scheme: dark;
 }
 
 @theme inline {
+  --color-chrome: var(--chrome);
+  --color-chrome-soft: var(--chrome-soft);
+  --color-action: var(--action);
+  --color-action-text: var(--action-text);
+  --color-accent: var(--accent);
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-paid: var(--paid);
+  --color-paid-soft: var(--paid-soft);
+  --color-owing: var(--owing);
+  --color-owing-soft: var(--owing-soft);
+  --color-danger: var(--danger);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+  *, ::before, ::after { border-color: var(--border); }
+  body { background: var(--background); color: var(--fg); }
+  input, select, textarea { font-size: 16px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
