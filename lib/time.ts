@@ -25,8 +25,9 @@ function formatClock(iso: string) {
   const parts = new Intl.DateTimeFormat("en-US", { timeZone: ZONE, hour: "numeric", minute: "2-digit", hour12: true }).formatToParts(d);
   const hourPart = parts.find((p) => p.type === "hour")?.value ?? "10";
   const minutePart = parts.find((p) => p.type === "minute")?.value ?? "00";
+  const dayPeriod = parts.find((p) => p.type === "dayPeriod")?.value;
   const hour = Number(hourPart) % 12 || 12;
-  const suffix = Number(hourPart) >= 12 ? "pm" : "am";
+  const suffix = dayPeriod?.toLowerCase() === "pm" ? "pm" : "am";
   return minutePart === "00" ? `${hour}${suffix}` : `${hour}:${minutePart}${suffix}`;
 }
 
