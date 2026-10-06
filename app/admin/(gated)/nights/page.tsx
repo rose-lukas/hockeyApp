@@ -28,6 +28,8 @@ export default async function NightsPage() {
           </div>
           <Field label="Arena" name="arena" maxLength={80} defaultValue={last?.arena ?? ""} />
           <Field label="Note (optional)" name="note" maxLength={200} />
+          <Field label="Rink cost override ($, optional)" name="rinkCost" inputMode="decimal"
+            hint="Leave blank to use the season's default rink cost." />
           <Submit>Add night</Submit>
         </ActionForm>
       </Card>

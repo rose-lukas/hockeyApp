@@ -32,6 +32,7 @@ export function PaymentCallout({
         </p>
       )}
       {note && <p className="mt-2 whitespace-pre-line text-sm text-muted">{note}</p>}
+      <p className="mt-2 text-xs text-muted">Cash works too — just hand it to Lukas Rose at the rink.</p>
     </section>
   );
 }

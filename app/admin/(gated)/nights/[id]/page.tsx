@@ -95,6 +95,9 @@ export default async function AdminNightPage({ params }: PageProps<"/admin/night
           </div>
           <Field label="Arena" name="arena" maxLength={80} defaultValue={night.arena} />
           <Field label="Note" name="note" maxLength={200} defaultValue={night.note} />
+          <Field label="Rink cost override ($, optional)" name="rinkCost" inputMode="decimal"
+            placeholder={`Default: ${(night.rink_cost_cents / 100).toFixed(2)}`}
+            hint="Leave blank to use the season's default rink cost." />
           <Submit variant="secondary">Save changes</Submit>
         </ActionForm>
         <div className="mt-4 flex flex-wrap gap-2 border-t pt-4">

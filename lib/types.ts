@@ -10,6 +10,7 @@ export type Season = {
   night_price_cents: number;
   etransfer_email: string;
   payment_note: string;
+  default_rink_cost_cents: number;
 };
 
 export type NightSummary = {
@@ -22,6 +23,17 @@ export type NightSummary = {
   headcount: number;
   paid_count: number;
   booking_status: "planned" | "booked";
+  rink_cost_cents: number;
+};
+
+export type PiggyBank = {
+  season_id: string;
+  money_in_cents: number;
+  booked_cost_cents: number;
+  booked_night_count: number;
+  default_rink_cost_cents: number;
+  season_payer_count: number;
+  night_payer_count: number;
 };
 
 export type ListRow = {

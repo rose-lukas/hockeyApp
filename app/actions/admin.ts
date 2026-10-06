@@ -28,6 +28,15 @@ const cents = z.string().transform((v, ctx) => {
   return c ?? 0;
 });
 
+// Blank means "use the season default".
+const optionalCents = z.string().transform((v, ctx) => {
+  const t = v.trim();
+  if (t === "") return null;
+  const c = parseDollarsToCents(t);
+  if (c === null) ctx.addIssue({ code: "custom", message: "Enter an amount like 1800, or leave blank." });
+  return c;
+});
+
 // ── auth ──
 
 export async function login(_prev: ActionState, form: FormData): Promise<ActionState> {
@@ -97,14 +106,18 @@ export async function deleteSeasonPass(_prev: ActionState, form: FormData) {
 
 export async function saveNight(_prev: ActionState, form: FormData) {
   const p = parse(
-    z.object({ id: id.optional().or(z.literal("").transform(() => undefined)), date, time, arena: shortText(80), note: shortText(200) }),
+    z.object({
+      id: id.optional().or(z.literal("").transform(() => undefined)),
+      date, time, arena: shortText(80), note: shortText(200),
+      rinkCost: optionalCents,
+    }),
     form,
   );
   if (!p.ok) return p.state;
   const { id: nightId, ...d } = p.data;
   return call(
     "save_night",
-    { p_id: nightId ?? null, p_date: d.date, p_time: d.time, p_arena: d.arena, p_note: d.note },
+    { p_id: nightId ?? null, p_date: d.date, p_time: d.time, p_arena: d.arena, p_note: d.note, p_rink_cost_cents: d.rinkCost },
     nightId ? "Night saved." : "Night added.",
   );
 }
@@ -159,11 +172,12 @@ const seasonFields = z.object({
   nightPrice: cents,
   email: z.union([z.literal(""), z.email("That e-transfer email doesn't look right.")]),
   note: shortText(500),
+  defaultRinkCost: cents,
 });
 
 const seasonArgs = (d: z.infer<typeof seasonFields>) => ({
   p_name: d.name, p_season_price_cents: d.seasonPrice, p_night_price_cents: d.nightPrice,
-  p_etransfer_email: d.email, p_payment_note: d.note,
+  p_etransfer_email: d.email, p_payment_note: d.note, p_default_rink_cost_cents: d.defaultRinkCost,
 });
 
 export async function updateSeason(_prev: ActionState, form: FormData) {

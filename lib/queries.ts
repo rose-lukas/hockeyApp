@@ -1,5 +1,5 @@
 import { supabaseServer } from "./supabase";
-import type { ListRow, NightSummary, Season, Status } from "./types";
+import type { ListRow, NightSummary, PiggyBank, Season, Status } from "./types";
 
 export async function getCurrentSeason() {
   const supabase = await supabaseServer();
@@ -32,6 +32,12 @@ export async function getNightList(nightId: string) {
 /** First night that hasn't finished yet; a game counts as "next" until 2h after faceoff. */
 export function pickNextNight(nights: NightSummary[], now = Date.now()) {
   return nights.find((n) => n.status === "scheduled" && Date.parse(n.faceoff_at) + 2 * 3600_000 > now) ?? null;
+}
+
+export async function getPiggyBank(seasonId: string) {
+  const supabase = await supabaseServer();
+  const { data } = await supabase.from("v_piggy_bank").select("*").eq("season_id", seasonId).maybeSingle();
+  return data as PiggyBank | null;
 }
 
 // ── admin ──

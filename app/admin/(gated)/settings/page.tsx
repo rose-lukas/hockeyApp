@@ -15,6 +15,9 @@ function SeasonFields({ s }: { s?: Season | null }) {
         <Field label="One night ($)" name="nightPrice" inputMode="decimal" required defaultValue={dollars(s?.night_price_cents ?? 2000)} />
       </div>
       <Field label="E-transfer email" name="email" type="email" maxLength={120} defaultValue={s?.etransfer_email} />
+      <Field label="Default rink cost ($)" name="defaultRinkCost" inputMode="decimal" required
+        defaultValue={dollars(s?.default_rink_cost_cents ?? 0)}
+        hint="Used for any booked night without its own cost. Shows up in the Piggy Bank." />
       <label className="block">
         <span className="text-sm font-semibold">Payment instructions</span>
         <textarea name="note" maxLength={500} rows={3} defaultValue={s?.payment_note}
