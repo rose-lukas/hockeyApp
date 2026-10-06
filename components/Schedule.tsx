@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDay, formatTime } from "@/lib/time";
+import { formatScheduleLine } from "@/lib/time";
 import type { NightSummary } from "@/lib/types";
 import { BookingBadge } from "./StatusPill";
 
@@ -21,10 +21,9 @@ export function Schedule({ nights, currentId }: { nights: NightSummary[]; curren
               className={`flex min-h-12 items-center justify-between gap-3 px-4 py-2.5 ${done || cancelled ? "text-muted" : ""} ${n.id === currentId ? "bg-chrome-soft" : ""}`}
             >
               <span>
-                <span className={`font-semibold ${cancelled ? "line-through" : ""}`}>{formatDay(n.faceoff_at)}</span>
+                <span className={`font-semibold ${cancelled ? "line-through" : ""}`}>{formatScheduleLine(n.faceoff_at)}</span>
                 <span className="ml-2 text-sm text-muted">
-                  {formatTime(n.faceoff_at)}
-                  {n.arena && ` · ${n.arena}`}
+                  {n.arena && `${n.arena}`}
                 </span>
               </span>
               <span className="flex items-center gap-2">

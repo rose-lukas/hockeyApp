@@ -30,7 +30,7 @@ export default async function Home() {
       <PublicHeader subtitle={season.name} />
       <Page>
         {next ? (
-          <div className="flex flex-col gap-4 rounded-2xl border-2 border-accent bg-sunken p-3">
+          <div className="flex flex-col gap-4 rounded-2xl bg-sunken p-3">
             <NightHero night={next} label="Next game" />
             <section>
               <SectionLabel>Who&apos;s in</SectionLabel>
@@ -42,6 +42,11 @@ export default async function Home() {
             {nights.length ? "Season's over. See you next year." : "No nights booked yet."}
           </p>
         )}
+
+        <section>
+          <SectionLabel>Schedule</SectionLabel>
+          <Schedule nights={nights} currentId={next?.id} />
+        </section>
 
         <div className="flex flex-col gap-4 rounded-2xl border bg-sunken p-3">
           <section>
@@ -62,11 +67,6 @@ export default async function Home() {
         </div>
 
         {piggyBank && <PiggyBank data={piggyBank} />}
-
-        <section>
-          <SectionLabel>Schedule</SectionLabel>
-          <Schedule nights={nights} currentId={next?.id} />
-        </section>
       </Page>
       <StickyAction href={next ? `/join?night=${next.id}` : "/join"}>Get on the list</StickyAction>
     </>

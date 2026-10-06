@@ -40,6 +40,35 @@ export async function getPiggyBank(seasonId: string) {
   return data as PiggyBank | null;
 }
 
+export type NightEntryRow = {
+  id: string;
+  status: Status;
+  amount_cents: number;
+  night_id: string;
+  night_faceoff_at?: string;
+  player: { id: string; name: string };
+};
+
+export async function getNightEntries(seasonId: string) {
+  const supabase = await supabaseServer();
+  const { data: nights } = await supabase.from("night").select("id").eq("season_id", seasonId);
+  const ids = nights?.map((night) => night.id) ?? [];
+
+  if (!ids.length) return [] as NightEntryRow[];
+
+  const { data } = await supabase
+    .from("night_entry")
+    .select("id, status, amount_cents, night_id, player:player_id (id, name), night:night_id (faceoff_at)")
+    .in("night_id", ids);
+
+  return ((data ?? []) as unknown as Array<
+    NightEntryRow & { night?: { faceoff_at?: string } }
+  >).map((entry) => ({
+    ...entry,
+    night_faceoff_at: entry.night?.faceoff_at,
+  })) as NightEntryRow[];
+}
+
 // ── admin ──
 
 export type PendingRow = {

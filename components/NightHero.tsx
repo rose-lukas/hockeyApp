@@ -1,20 +1,21 @@
 import { formatLongDay, formatTime } from "@/lib/time";
 import type { NightSummary } from "@/lib/types";
 import { BookingBadge } from "./StatusPill";
+import { formatNightHeader, formatWeekday } from "@/lib/time";
 
 export function NightHero({ night, label }: { night: NightSummary; label: string }) {
   const cancelled = night.status === "cancelled";
   return (
-    <section className="rounded-[18px] bg-chrome p-5 text-action-text ring-2 ring-accent ring-offset-2 ring-offset-background">
+    <section className="rounded-[18px] bg-chrome p-5 text-action-text">
       <div className="flex items-center justify-between gap-2">
         <p className="text-[13px] font-bold uppercase tracking-wider opacity-75">{label}</p>
         {!cancelled && <BookingBadge status={night.booking_status} />}
       </div>
       <p className={`mt-1 font-display text-3xl font-extrabold leading-tight ${cancelled ? "line-through opacity-70" : ""}`}>
-        {formatLongDay(night.faceoff_at)}
+        {formatNightHeader(night.faceoff_at)}
       </p>
       <p className="mt-1 text-[15px] opacity-85">
-        {formatTime(night.faceoff_at)}
+        {formatWeekday(night.faceoff_at)}
         {night.arena && ` · ${night.arena}`}
       </p>
       {cancelled ? (
