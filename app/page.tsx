@@ -27,7 +27,7 @@ export default async function Home() {
 
   return (
     <>
-      <PublicHeader subtitle={season.name} />
+      <PublicHeader />
       <Page>
         {next ? (
           <div className="flex flex-col gap-4 rounded-2xl bg-sunken p-3">
@@ -68,7 +68,7 @@ export default async function Home() {
 
         {piggyBank && <PiggyBank data={piggyBank} />}
       </Page>
-      <StickyAction href={next ? `/join?night=${next.id}` : "/join"}>Get on the list</StickyAction>
+      <StickyAction href={next ? `/join?night=${next.id}` : "/join"}>Register for Games</StickyAction>
     </>
   );
 }

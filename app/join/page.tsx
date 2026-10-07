@@ -27,7 +27,7 @@ export default async function JoinPage({ searchParams }: PageProps<"/join">) {
 
   return (
     <>
-      <PublicHeader subtitle={season.name} />
+      <PublicHeader />
       <Page>
         <JoinForm
           nights={upcoming}

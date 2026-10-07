@@ -20,6 +20,7 @@
   --owing: #9c5a10;
   --owing-soft: #f8eedd;
   --danger: #b3261e;
+  --hero-photo: none;
   color-scheme: light;
 }
 
@@ -69,6 +70,20 @@
   body { background: var(--background); color: var(--fg); }
   input, select, textarea { font-size: 16px; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+}
+
+/* NightHero background photo — gradient stops are color-mix()'d from --chrome so the
+   photo shows through as a themed vignette instead of being fully occluded. */
+.bg-chrome-photo {
+  background-image: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--chrome) 88%, transparent) 0%,
+      color-mix(in srgb, var(--chrome) 55%, transparent) 60%,
+      color-mix(in srgb, var(--chrome) 90%, transparent) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

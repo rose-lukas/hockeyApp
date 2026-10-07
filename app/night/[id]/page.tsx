@@ -16,7 +16,7 @@ export default async function NightPage({ params }: PageProps<"/night/[id]">) {
 
   return (
     <>
-      <PublicHeader subtitle={season?.name} />
+      <PublicHeader />
       <Page>
         <Link href="/" className="-mb-4 min-h-11 self-start py-2 text-sm font-semibold text-accent">
           ← All nights
@@ -27,7 +27,7 @@ export default async function NightPage({ params }: PageProps<"/night/[id]">) {
           <PlayerList rows={list} />
         </section>
       </Page>
-      {open && <StickyAction href={`/join?night=${night.id}`}>Get on this list</StickyAction>}
+      {open && <StickyAction href={`/join?night=${night.id}`}>Register for Games</StickyAction>}
     </>
   );
 }

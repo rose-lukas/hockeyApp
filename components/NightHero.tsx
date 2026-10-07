@@ -6,7 +6,10 @@ import { formatNightHeader, formatWeekday } from "@/lib/time";
 export function NightHero({ night, label }: { night: NightSummary; label: string }) {
   const cancelled = night.status === "cancelled";
   return (
-    <section className="rounded-[18px] bg-chrome p-5 text-action-text">
+    <section
+      className="rounded-[18px] bg-chrome-photo p-5 text-action-text"
+      style={{ "--hero-photo": "url(/images/rink-hero.jpg)" } as React.CSSProperties}
+    >
       <div className="flex items-center justify-between gap-2">
         <p className="text-[13px] font-bold uppercase tracking-wider opacity-75">{label}</p>
         {!cancelled && <BookingBadge status={night.booking_status} />}

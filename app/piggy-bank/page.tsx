@@ -28,7 +28,7 @@ export default async function PiggyBankPage() {
   if (!piggyBank) {
     return (
       <>
-        <PublicHeader subtitle={season.name} />
+        <PublicHeader />
         <Page>
           <p className="rounded-xl bg-sunken p-6 text-center text-muted">Piggy Bank data is not available yet.</p>
         </Page>
@@ -58,7 +58,7 @@ export default async function PiggyBankPage() {
 
   return (
     <>
-      <PublicHeader subtitle={season.name} />
+      <PublicHeader />
       <Page>
         <div className="flex items-center justify-between gap-3">
           <h1 className="font-display text-2xl font-extrabold">Piggy Bank</h1>
