@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Page, PublicHeader } from "@/components/Layout";
 import { getCurrentSeason, getNights } from "@/lib/queries";
 import { formatDay, formatTime } from "@/lib/time";
@@ -14,6 +15,9 @@ export default async function JoinPage({ searchParams }: PageProps<"/join">) {
       <>
         <PublicHeader />
         <Page>
+          <Link href="/" className="-mb-4 min-h-11 self-start py-2 text-sm font-semibold text-accent">
+            ← Back
+          </Link>
           <p className="rounded-xl bg-sunken p-6 text-center text-muted">Season registration will start soon.</p>
         </Page>
       </>
@@ -29,11 +33,16 @@ export default async function JoinPage({ searchParams }: PageProps<"/join">) {
     <>
       <PublicHeader />
       <Page>
+        <Link href="/" className="-mb-4 min-h-11 self-start py-2 text-sm font-semibold text-accent">
+          ← Back
+        </Link>
         <JoinForm
           nights={upcoming}
           defaultNight={typeof night === "string" ? night : undefined}
           seasonPriceCents={season.season_price_cents}
           nightPriceCents={season.night_price_cents}
+          etransferEmail={season.etransfer_email}
+          paymentNote={season.payment_note}
         />
       </Page>
     </>

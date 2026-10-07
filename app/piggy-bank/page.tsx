@@ -61,7 +61,7 @@ export default async function PiggyBankPage() {
       <PublicHeader />
       <Page>
         <div className="flex items-center justify-between gap-3">
-          <h1 className="font-display text-2xl font-extrabold">Piggy Bank</h1>
+          <h1 className="font-display text-3xl font-extrabold">PIGGY B&#xF01C;NK</h1>
           <Link href="/" className="text-sm font-semibold text-accent">Back</Link>
         </div>
 

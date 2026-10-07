@@ -16,7 +16,7 @@ export function PaymentCallout({
   return (
     <section className="rounded-xl bg-chrome-soft p-4" aria-labelledby="pay-heading">
       <h2 id="pay-heading" className="text-[13px] font-bold uppercase tracking-wider text-muted">
-        How to pay
+        HOW T&#xF043; PAY
       </h2>
       <p className="mt-2 text-[15px]">
         Send {amountCents !== undefined ? <strong className="tabular-nums">{formatCents(amountCents)}</strong> : "your fee"} by

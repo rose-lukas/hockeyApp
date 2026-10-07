@@ -10,8 +10,8 @@ export function PiggyBank({ data }: { data: PiggyBankData }) {
   return (
     <Link href="/piggy-bank" className="block rounded-xl bg-sunken p-4 transition hover:bg-surface/80" aria-labelledby="piggy-heading">
       <section aria-labelledby="piggy-heading">
-        <h2 id="piggy-heading" className="text-[13px] font-bold uppercase tracking-wider text-muted">
-          Piggy Bank
+        <h2 id="piggy-heading" className="text-xl font-bold uppercase tracking-wider text-muted">
+          PIGGY B&#xF01C;NK
         </h2>
 
         <div className="mt-3 grid grid-cols-2 gap-3">

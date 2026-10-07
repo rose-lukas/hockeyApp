@@ -31,9 +31,9 @@ export default async function Home() {
       <Page>
         {next ? (
           <div className="flex flex-col gap-4 rounded-2xl bg-sunken p-3">
-            <NightHero night={next} label="Next game" />
+            <NightHero night={next} label={"N\u{F029}XT GAME"} prominent />
             <section>
-              <SectionLabel>Who&apos;s in</SectionLabel>
+              <SectionLabel>WH&#xF043;&apos;S IN</SectionLabel>
               <PlayerList rows={list} />
             </section>
           </div>
@@ -44,13 +44,13 @@ export default async function Home() {
         )}
 
         <section>
-          <SectionLabel>Schedule</SectionLabel>
+          <SectionLabel primary>SCHEDU&#xF03A;E</SectionLabel>
           <Schedule nights={nights} currentId={next?.id} />
         </section>
 
         <div className="flex flex-col gap-4 rounded-2xl border bg-sunken p-3">
           <section>
-            <SectionLabel>Prices</SectionLabel>
+            <SectionLabel primary>&#xF046;RICES</SectionLabel>
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl border bg-surface p-4">
                 <p className="text-sm text-muted">Whole season</p>
@@ -68,7 +68,9 @@ export default async function Home() {
 
         {piggyBank && <PiggyBank data={piggyBank} />}
       </Page>
-      <StickyAction href={next ? `/join?night=${next.id}` : "/join"}>Register for Games</StickyAction>
+      <StickyAction href={next ? `/join?night=${next.id}` : "/join"}>
+        <span className="font-sans font-black tracking-wider">SIGN UP NOW</span>
+      </StickyAction>
     </>
   );
 }

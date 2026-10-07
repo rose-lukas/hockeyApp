@@ -14,9 +14,11 @@ type Props = {
   defaultNight?: string;
   seasonPriceCents: number;
   nightPriceCents: number;
+  etransferEmail: string;
+  paymentNote: string;
 };
 
-export function JoinForm({ nights, defaultNight, seasonPriceCents, nightPriceCents }: Props) {
+export function JoinForm({ nights, defaultNight, seasonPriceCents, nightPriceCents, etransferEmail, paymentNote }: Props) {
   const [state, action] = useActionState<JoinState, FormData>(joinAction, null);
   const [kind, setKind] = useState<"night" | "season">(nights.length ? "night" : "season");
 
@@ -54,7 +56,7 @@ export function JoinForm({ nights, defaultNight, seasonPriceCents, nightPriceCen
 
   return (
     <form action={action} className="flex flex-col gap-6">
-      <h1 className="font-display text-2xl font-extrabold">Get on the list</h1>
+      <h1 className="font-display text-2xl font-extrabold">G&#xF06B;t on t&#xF073;e li&#xFB06;</h1>
 
       <label className="block">
         <span className="font-semibold">Your name</span>
@@ -78,6 +80,8 @@ export function JoinForm({ nights, defaultNight, seasonPriceCents, nightPriceCen
         <Choice checked={kind === "season"} onSelect={() => setKind("season")}
           title="Whole season" price={formatCents(seasonPriceCents)} detail="On the list every night." value="season" />
       </fieldset>
+
+      <PaymentCallout email={etransferEmail} note={paymentNote} />
 
       {kind === "night" && nights.length > 0 && (
         <label className="block">

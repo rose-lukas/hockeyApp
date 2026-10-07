@@ -23,7 +23,7 @@ export default async function NightPage({ params }: PageProps<"/night/[id]">) {
         </Link>
         <NightHero night={night} label="Game night" />
         <section>
-          <SectionLabel>Who&apos;s in</SectionLabel>
+          <SectionLabel>WH&#xF043;&apos;S IN</SectionLabel>
           <PlayerList rows={list} />
         </section>
       </Page>

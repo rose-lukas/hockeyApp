@@ -17,7 +17,12 @@ export function PublicHeader() {
 }
 
 export function Page({ children }: { children: React.ReactNode }) {
-  return <main className="mx-auto flex max-w-[560px] flex-col gap-7 px-4 pt-20 pb-32">{children}</main>;
+  return (
+    <main className="mx-auto flex min-h-dvh w-full max-w-[560px] flex-col gap-7 px-4 pt-20 pb-32">
+      {children}
+      <footer className="mt-auto pt-2 text-center text-xs text-muted">Built by Lukas Rose.</footer>
+    </main>
+  );
 }
 
 export function StickyAction({ href, children }: { href: string; children: React.ReactNode }) {
@@ -31,6 +36,10 @@ export function StickyAction({ href, children }: { href: string; children: React
   );
 }
 
-export function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-2 text-[13px] font-bold uppercase tracking-wider text-muted">{children}</h2>;
+export function SectionLabel({ children, primary = false }: { children: React.ReactNode; primary?: boolean }) {
+  return (
+    <h2 className={`mb-2 font-bold uppercase tracking-wider text-muted ${primary ? "text-xl" : "text-base"}`}>
+      {children}
+    </h2>
+  );
 }
