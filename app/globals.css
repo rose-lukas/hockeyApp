@@ -72,9 +72,20 @@
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 }
 
-/* NightHero background photo — gradient stops are color-mix()'d from --chrome so the
-   photo shows through as a themed vignette instead of being fully occluded. */
+/* Theme-specific photo overlays keep the rink visible beneath readable hero text. */
 .bg-chrome-photo {
+  background-image: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--surface) 78%, transparent) 0%,
+      color-mix(in srgb, var(--surface) 58%, transparent) 60%,
+      color-mix(in srgb, var(--surface) 82%, transparent) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+}
+
+.dark .bg-chrome-photo {
   background-image: linear-gradient(
       135deg,
       color-mix(in srgb, var(--chrome) 88%, transparent) 0%,
@@ -82,8 +93,6 @@
       color-mix(in srgb, var(--chrome) 90%, transparent) 100%
     ),
     var(--hero-photo);
-  background-size: cover;
-  background-position: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -7,7 +7,7 @@ export function NightHero({ night, label }: { night: NightSummary; label: string
   const cancelled = night.status === "cancelled";
   return (
     <section
-      className="rounded-[18px] bg-chrome-photo p-5 text-action-text"
+      className="rounded-[18px] bg-chrome-photo p-5 text-fg dark:text-action-text"
       style={{ "--hero-photo": "url(/images/rink-hero.jpg)" } as React.CSSProperties}
     >
       <div className="flex items-center justify-between gap-2">
