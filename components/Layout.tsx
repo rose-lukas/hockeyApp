@@ -16,9 +16,9 @@ export function PublicHeader() {
   );
 }
 
-export function Page({ children, edgeToEdge = false }: { children: React.ReactNode; edgeToEdge?: boolean }) {
+export function Page({ children, edgeToEdge = false }: { readonly children: React.ReactNode; readonly edgeToEdge?: boolean }) {
   return (
-    <main className={`mx-auto flex min-h-dvh w-full max-w-[560px] flex-col gap-7 pt-20 pb-32 ${edgeToEdge ? "" : "px-4"}`}>
+    <main className={`mx-auto flex min-h-dvh w-full max-w-[560px] flex-col gap-7 pb-32 ${edgeToEdge ? "pt-0 [&_.rounded-xl]:rounded-none [&_.rounded-2xl]:rounded-none [&_.rounded-lg:not(button)]:rounded-none" : "px-4 pt-20"}`}>
       {children}
       <footer className={`mt-auto pt-2 text-center text-xs text-muted ${edgeToEdge ? "px-4" : ""}`}>Built by Lukas Rose.</footer>
     </main>

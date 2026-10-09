@@ -1,13 +1,20 @@
-import { formatLongDay, formatTime } from "@/lib/time";
 import type { NightSummary } from "@/lib/types";
 import { BookingBadge } from "./StatusPill";
 import { formatNightHeader, formatWeekday } from "@/lib/time";
 
-export function NightHero({ night, label, prominent = false }: { night: NightSummary; label: string; prominent?: boolean }) {
+export function NightHero({ night, label, prominent = false, fullBleed = false }: { readonly night: NightSummary; readonly label: string; readonly prominent?: boolean; readonly fullBleed?: boolean }) {
   const cancelled = night.status === "cancelled";
+  let sizeClasses: string;
+  if (fullBleed) {
+    sizeClasses = "min-h-[38rem] rounded-none px-6 pb-8 pt-[calc(env(safe-area-inset-top)+5.25rem)] sm:px-8 sm:pb-10 sm:pt-[calc(env(safe-area-inset-top)+5.25rem)]";
+  } else if (prominent) {
+    sizeClasses = "min-h-[30rem] rounded-[18px] p-6 sm:p-8";
+  } else {
+    sizeClasses = "min-h-60 rounded-[18px] p-6 sm:p-8";
+  }
   return (
     <section
-      className={`flex flex-col justify-between rounded-[18px] bg-chrome-photo p-6 text-fg dark:text-action-text sm:p-8 ${prominent ? "min-h-[30rem]" : "min-h-60"}`}
+      className={`flex flex-col justify-between bg-chrome-photo text-fg dark:text-action-text ${sizeClasses}`}
       style={{ "--hero-photo": "url(/images/rink-hero.jpg)" } as React.CSSProperties}
     >
       <div className="flex items-center justify-between gap-2">

@@ -31,7 +31,7 @@ export default async function Home() {
       <Page edgeToEdge>
         {next ? (
           <div className="flex flex-col gap-4">
-            <NightHero night={next} label={"N\u{F029}XT GAME"} prominent />
+            <NightHero night={next} label={"N\u{F029}XT GAME"} prominent fullBleed />
             <section>
               <div className="px-4">
                 <SectionLabel>WH&#xF043;&apos;S IN</SectionLabel>
