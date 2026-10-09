@@ -13,8 +13,8 @@ export default async function Home() {
     return (
       <>
         <PublicHeader />
-        <Page>
-          <p className="rounded-xl bg-sunken p-6 text-center text-muted">Season registration will start soon.</p>
+        <Page edgeToEdge>
+          <p className="bg-sunken p-6 text-center text-muted">Season registration will start soon.</p>
         </Page>
       </>
     );
@@ -28,29 +28,35 @@ export default async function Home() {
   return (
     <>
       <PublicHeader />
-      <Page>
+      <Page edgeToEdge>
         {next ? (
-          <div className="flex flex-col gap-4 rounded-2xl bg-sunken p-3">
+          <div className="flex flex-col gap-4">
             <NightHero night={next} label={"N\u{F029}XT GAME"} prominent />
             <section>
-              <SectionLabel>WH&#xF043;&apos;S IN</SectionLabel>
+              <div className="px-4">
+                <SectionLabel>WH&#xF043;&apos;S IN</SectionLabel>
+              </div>
               <PlayerList rows={list} />
             </section>
           </div>
         ) : (
-          <p className="rounded-xl bg-sunken p-6 text-center text-muted">
+          <p className="bg-sunken p-6 text-center text-muted">
             {nights.length ? "Season's over. See you next year." : "No nights booked yet."}
           </p>
         )}
 
         <section>
-          <SectionLabel primary>SCHEDU&#xF03A;E</SectionLabel>
+          <div className="px-4">
+            <SectionLabel primary>SCHEDU&#xF03A;E</SectionLabel>
+          </div>
           <Schedule nights={nights} currentId={next?.id} />
         </section>
 
-        <div className="flex flex-col gap-4 rounded-2xl border bg-sunken p-3">
+        <div className="flex flex-col gap-4">
           <section>
-            <SectionLabel primary>&#xF046;RICES</SectionLabel>
+            <div className="px-4">
+              <SectionLabel primary>&#xF046;RICES</SectionLabel>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl border bg-surface p-4">
                 <p className="text-sm text-muted">Whole season</p>
